@@ -9,7 +9,7 @@
 $DB_SERVER   = 'localhost\SQLEXPRESS';  // host: 'localhost\SQLEXPRESS' or 'localhost' (default instance)
 $DB_NAME     = 'TodoDB';
 $DB_USER     = 'todo_app';
-$DB_PASSWORD = '<YOUR_PASSWORD_HERE>';  // <-- hide this in your documentation!
+$DB_PASSWORD = 'TODO-CIT401IT41S1!';  // <-- hide this in your documentation!
 // ------------------------------------------------------------------------
 
 try {

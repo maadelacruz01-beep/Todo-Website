@@ -4,7 +4,7 @@
 USE master;
 GO
 IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = 'todo_app')
-    CREATE LOGIN todo_app WITH PASSWORD = '<YOUR_STRONG_PASSWORD_HERE>',
+    CREATE LOGIN todo_app WITH PASSWORD = 'TODO-CIT401IT41S1!',
                                CHECK_POLICY = ON,
                                DEFAULT_DATABASE = TodoDB;
 GO
