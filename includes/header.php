@@ -6,6 +6,7 @@
   <title>To-Do List</title>
   <!-- Bootstrap via CDN (needs internet access on the machine viewing the site) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body class="bg-light">
 <div class="container py-4" style="max-width: 800px;">

@@ -25,10 +25,13 @@ body {
   line-height: 1.5;
   color: var(--navy);
   background: var(--light);
-  max-width: 860px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1rem 0.75rem;
 }
+
+/* Bootstrap's .container is narrower than the body; widen it to match */
+.container { max-width: 1100px; }
 
 h1, h2, h3 { color: var(--navy); line-height: 1.25; margin: 0 0 1rem; }
 h1 { font-size: 1.9rem; font-weight: 700; }
@@ -92,9 +95,6 @@ input[type="date"], select, textarea {
 input::placeholder, textarea::placeholder { color: var(--grey-dark); }
 input:focus, select:focus, textarea:focus { border-color: var(--blue); }
 
-/* Add-task form: input and button on one row when there is room */
-form input[type="text"] { width: auto; min-width: 0; flex: 1 1 14rem; }
-
 /* ---------- Buttons ---------- */
 button, input[type="submit"], .btn {
   display: inline-block;
@@ -151,9 +151,9 @@ th {
   font-weight: 600;
   color: var(--white);
   background: var(--navy);
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 0.75rem;
 }
-td { padding: 0.75rem 1rem; border-top: 1px solid var(--light); vertical-align: middle; }
+td { padding: 0.5rem 0.75rem; border-top: 1px solid var(--light); vertical-align: middle; }
 tr:nth-child(even) td { background: #f7f9fa; }
 
 /* Completed tasks: dimmed with strike-through. Add class="done" to the row/item. */
@@ -180,6 +180,25 @@ tr:nth-child(even) td { background: #f7f9fa; }
   margin-bottom: 1rem;
 }
 .error { border-left-color: var(--grey-dark); }
+
+/* ---------- Compact table: keep all action buttons on one row ---------- */
+.btn-sm { padding: 0.25rem 0.65rem; font-size: 0.875rem; border-width: 1px; }
+td:not(:first-child) { white-space: nowrap; }   /* dates and buttons never wrap */
+td.text-end form { display: inline-block; margin: 0 0.15rem; }
+
+/* Bootstrap outline buttons: restore their lighter look over the navy default */
+.btn-outline-success, .btn-outline-secondary, .btn-outline-danger {
+  color: var(--navy);
+  background: transparent;
+  border-color: var(--grey);
+}
+.btn-outline-success:hover, .btn-outline-secondary:hover {
+  color: var(--white); background: var(--navy); border-color: var(--navy);
+}
+.btn-outline-danger { color: var(--grey-dark); border-color: var(--grey-dark); }
+.btn-outline-danger:hover {
+  color: var(--white); background: var(--grey-dark); border-color: var(--grey-dark);
+}
 
 /* ---------- Small screens ---------- */
 @media (max-width: 600px) {
