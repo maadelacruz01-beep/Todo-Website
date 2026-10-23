@@ -1,0 +1,189 @@
+/* ==========================================================
+   To-Do List: custom stylesheet
+   Palette: #2C3E50 navy | #ECF0F1 light | #3498DB blue
+            #95A5A6 grey | #7F8C8D dark grey
+   Link from includes/header.php inside <head>:
+   <link rel="stylesheet" href="/assets/style.css">
+   ========================================================== */
+
+:root {
+  --navy: #2C3E50;
+  --light: #ECF0F1;
+  --blue: #3498DB;
+  --grey: #95A5A6;
+  --grey-dark: #7F8C8D;
+  --white: #ffffff;
+  --radius: 10px;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--navy);
+  background: var(--light);
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1, h2, h3 { color: var(--navy); line-height: 1.25; margin: 0 0 1rem; }
+h1 { font-size: 1.9rem; font-weight: 700; }
+h2 { font-size: 1.3rem; font-weight: 600; }
+
+a { color: var(--navy); text-decoration-color: var(--blue); text-underline-offset: 3px; }
+a:hover { color: var(--blue); }
+
+/* ---------- Keyboard focus ---------- */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---------- Header / footer ---------- */
+header, nav {
+  background: var(--navy);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  border-bottom: 4px solid var(--blue);
+  margin-bottom: 1.5rem;
+}
+header h1, header h2, nav h1 { color: var(--white); margin: 0; }
+header a, nav a { color: var(--white); }
+
+footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--grey);
+  color: var(--grey-dark);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ---------- Cards: forms and tables sit on white panels ---------- */
+form, table {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(44, 62, 80, 0.12);
+}
+form { padding: 1.25rem; margin-bottom: 1.5rem; }
+
+/* Small forms inside table cells (toggle / delete buttons) stay flat */
+td form, td form * { background: none; box-shadow: none; padding: 0; margin: 0; }
+
+/* ---------- Inputs ---------- */
+label { display: block; font-weight: 600; margin-bottom: 0.35rem; }
+
+input[type="text"], input[type="search"], input[type="email"],
+input[type="date"], select, textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--navy);
+  background: var(--white);
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--grey);
+  border-radius: var(--radius);
+}
+input::placeholder, textarea::placeholder { color: var(--grey-dark); }
+input:focus, select:focus, textarea:focus { border-color: var(--blue); }
+
+/* Add-task form: input and button on one row when there is room */
+form input[type="text"] { width: auto; min-width: 0; flex: 1 1 14rem; }
+
+/* ---------- Buttons ---------- */
+button, input[type="submit"], .btn {
+  display: inline-block;
+  font: inherit;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--navy);
+  padding: 0.55rem 1.1rem;
+  border: 2px solid var(--navy);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+button:hover, input[type="submit"]:hover, .btn:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+/* Secondary (edit, cancel) */
+.btn-secondary, .edit, .cancel {
+  color: var(--navy);
+  background: transparent;
+  border-color: var(--grey);
+}
+.btn-secondary:hover, .edit:hover, .cancel:hover {
+  color: var(--navy);
+  background: var(--white);
+  border-color: var(--navy);
+}
+
+/* Destructive (delete): outlined in dark grey so it reads as the careful action */
+.btn-danger, .delete, .danger {
+  color: var(--grey-dark);
+  background: transparent;
+  border-color: var(--grey-dark);
+}
+.btn-danger:hover, .delete:hover, .danger:hover {
+  color: var(--white);
+  background: var(--grey-dark);
+  border-color: var(--grey-dark);
+}
+
+/* ---------- Task table ---------- */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;           /* keeps rounded corners on the header row */
+}
+th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--navy);
+  padding: 0.75rem 1rem;
+}
+td { padding: 0.75rem 1rem; border-top: 1px solid var(--light); vertical-align: middle; }
+tr:nth-child(even) td { background: #f7f9fa; }
+
+/* Completed tasks: dimmed with strike-through. Add class="done" to the row/item. */
+.done td, li.done, .completed { color: var(--grey-dark); }
+.done .task-text, .completed .task-text, td.done { text-decoration: line-through; }
+
+/* Status labels. Use class="status pending" / "status completed" on a <span>. */
+.status {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+}
+.status.pending   { color: var(--navy); background: var(--light); border: 1px solid var(--grey); }
+.status.completed { color: var(--white); background: var(--navy); }
+
+/* ---------- Messages ---------- */
+.alert, .message, .success, .error {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  background: var(--white);
+  border-left: 5px solid var(--blue);
+  margin-bottom: 1rem;
+}
+.error { border-left-color: var(--grey-dark); }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  body { padding: 1rem 0.75rem; }
+  h1 { font-size: 1.5rem; }
+  th, td { padding: 0.6rem 0.6rem; }
+}
